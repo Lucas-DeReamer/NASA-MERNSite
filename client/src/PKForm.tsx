@@ -12,7 +12,35 @@ function PKForm() {
 
     async function submit(e: any): Promise<void> {
         e.preventDefault();
-        setRes(inputs.PK + " " + inputs.name);
+
+        const data = { PK: inputs.PK, name: inputs.name };
+        const js = JSON.stringify(data);
+
+        try {
+            const response = await
+                fetch('http://localhost:5000/api/submit',
+                    {
+                        method: 'POST', body: js, headers: {
+                            'Content-Type':
+                                'application/json',
+                            'Accept': 'application/json'
+                        }
+                    });
+            let txt = await response.text();
+            let res = JSON.parse(txt);
+            setRes(res.message);
+        }
+        catch (error: any) {
+            setRes(error.toString());
+        }
+
+        
+        /*localStorage.setItem('submit', JSON.stringify(data));
+        let lsd: any = JSON.parse(localStorage.getItem('submit'));
+        setRes(lsd.PK) */
+
+
+        //setRes(inputs.PK + " " + inputs.name);
 
     }
 

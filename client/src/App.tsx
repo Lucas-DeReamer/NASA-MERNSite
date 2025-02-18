@@ -40,4 +40,4 @@ function App() {
     <PKForm></PKForm></div>
 }
 
-export default App
+export default App;
