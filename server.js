@@ -18,17 +18,15 @@ const MongoClient = require('mongodb').MongoClient;
 
 const url = process.env.MONGODB_URL; // protected database url
 
-console.log(url);
-
 const client = new MongoClient(url);
 
 //Test connection
 client.connect()
     .then(() => {
         console.log('Successfully connected to MongoDB');
-        //app.listen(5000, () => {
-        //    console.log("Server running at http://localhost:5000");
-        //});
+        app.listen(5000, () => {
+            console.log("Server running at http://3.133.227.144:5000");
+        });
     })
     .catch((err) => {
         console.error('Error connecting to MongoDB:', err);
@@ -53,7 +51,7 @@ app.use((req, res, next) =>
 
 
 
-app.listen(5000); // start Node + Express server on port 5000
+//app.listen(5000); // start Node + Express server on port 5000
 
 // route
 app.get("/", (req, res) => {
