@@ -18,6 +18,8 @@ const MongoClient = require('mongodb').MongoClient;
 
 const url = process.env.MONGODB_URL; // protected database url
 
+console.log(url);
+
 const client = new MongoClient(url);
 
 //Test connection
