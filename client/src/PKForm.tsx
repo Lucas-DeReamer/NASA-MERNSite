@@ -1,8 +1,13 @@
 import { useState } from 'react';
 //import ReactDOM from 'react-dom/client';
 
+interface InputState {
+    PK: string;
+    name: string;
+}
+
 function PKForm() {
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState<InputState>;
 
     const [Res, setRes] = useState("");
 

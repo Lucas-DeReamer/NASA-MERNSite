@@ -33,15 +33,15 @@
 }     */
 
 import Message from './Message';
-//import PKForm from './PKForm';
-
-/*function App() {
-    return <div><Message></Message>
-    <PKForm></PKForm></div>
-} */
+import PKForm from './PKForm';
 
 function App() {
+    return <div><Message></Message>
+    <PKForm></PKForm></div>
+} 
+
+/*function App() {
     return <div><Message></Message></div>
-}
+}*/
 
 export default App;
