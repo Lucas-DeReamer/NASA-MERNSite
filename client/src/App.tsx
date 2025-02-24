@@ -1,9 +1,9 @@
-/*import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//import { useState } from 'react'
+//import reactLogo from './assets/react.svg'
+//import viteLogo from '/vite.svg'
+//import './App.css'
 
-function App() {
+/*function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -33,11 +33,15 @@ function App() {
 }     */
 
 import Message from './Message';
-import PKForm from './PKForm';
+//import PKForm from './PKForm';
 
-function App() {
+/*function App() {
     return <div><Message></Message>
     <PKForm></PKForm></div>
+} */
+
+function App() {
+    return <div><Message></Message></div>
 }
 
 export default App;

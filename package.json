@@ -4,9 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install-server": "npm install",
     "start-server": "node server.js",
-    "install-client": "cd mernsite && npm install",
     "build-client": "cd mernsite && npm run build",
     "start-client": "cd mernsite && npm run start",
     "start": "nodemon server.js && cd mernsite && npm run start"

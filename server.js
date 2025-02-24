@@ -25,7 +25,7 @@ client.connect()
     .then(() => {
         console.log('Successfully connected to MongoDB');
         app.listen(5000, () => {
-            console.log("Server running at http://3.133.227.144:5000");
+            console.log("Server running at http://localhost:5000");
         });
     })
     .catch((err) => {
