@@ -7,7 +7,10 @@ interface InputState {
 }
 
 function PKForm() {
-    const [inputs, setInputs] = useState<InputState>;
+    const [inputs, setInputs] = useState<InputState>({
+        PK: '',
+        name: '',
+    });
 
     const [Res, setRes] = useState("");
 
