@@ -93,7 +93,7 @@ app.post("/submit", async (req, res, next) => {
         } else {
             const newEntry = { PK: PK, name: name};
 
-            const results = await db.collection('Public_Keys').insertOne(newEntry).toArray();
+            const results = await db.collection('Public_Keys').insertOne(newEntry);
             const id = results.insertedID;
             console.log(results);
 
