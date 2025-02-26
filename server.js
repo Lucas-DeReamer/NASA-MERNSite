@@ -95,11 +95,11 @@ app.post("/submit", async (req, res, next) => {
 
             const results = await db.collection('Public_Keys').insertOne(newEntry);
             const id = results.insertedID.toString();
-            console.log(results);
+            console.log(id);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
-                message: id,
+                message: 'In good',
                 error: ''         // No error
             });
         }
