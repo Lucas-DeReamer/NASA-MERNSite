@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
-app.get("/api/submit/", async (req, res, next) => {
+app.get("submit/", async (req, res, next) => {
 
     console.log("Get submit");
     res.status(200).json({message: "Get Submit syn correct"})
