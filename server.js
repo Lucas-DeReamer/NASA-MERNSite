@@ -81,9 +81,9 @@ app.post("/submit", async (req, res, next) => {
 
     try {
         const db = client.db();
-        const loginMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
-        console.log(loginMatched);
-        if (loginMatched.length > 0) {
+        const keyMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
+        //console.log(keyMatched);
+        if (keyMatched.length > 0) {
 
             // Return JSON Error: PK already in DB
             res.status(418).json({
@@ -95,7 +95,7 @@ app.post("/submit", async (req, res, next) => {
 
             const results = await db.collection('Public_Keys').insertOne(newEntry);
             const id = newEntry.insertedID;
-            console.log(id);
+            console.log(newEntry);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
