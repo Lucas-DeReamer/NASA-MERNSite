@@ -76,8 +76,7 @@ app.post("/submit", async (req, res, next) => {
     const js = { message: name, error: error };
 
     console.log("Sub API activated")
-
-    res.status(200).json(js);
+    //res.status(200).json(js);
 
 
     try {
@@ -107,7 +106,7 @@ app.post("/submit", async (req, res, next) => {
     } catch (e) {
         // Handle any errors that occur during the database operation
         const error = e.toString();
-        res.status(500).json({ error }); // Send an error respons
+        res.status(500).json({ message: "error", error: error }); // Send an error respons
 
     }
 
