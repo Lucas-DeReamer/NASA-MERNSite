@@ -75,13 +75,15 @@ app.post("/submit", async (req, res, next) => {
 
     const js = { message: name, error: error };
 
-    console.log("Sub API activated")
+    //console.log("Sub API activated")
     //res.status(200).json(js);
 
 
     try {
         const db = client.db();
-        const loginMatched = await db.collection('Users').find({ Username: login }).toArray();
+        console.log("Conected to DB?");
+        const loginMatched = await db.collection('public_keys').find({ PK: PK }).toArray();
+        console.log(loginMatched);
         if (loginMatched.length > 0) {
 
             // Return JSON Error: PK already in DB
@@ -93,12 +95,12 @@ app.post("/submit", async (req, res, next) => {
             const newEntry = { PK: PK, name: name};
 
             //const db = client.db();
-            const results = await db.collection('Users').insertOne(newEntry);
+              //const results = await db.collection('Users').insertOne(newEntry);
             //const id = results.insertedId;
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
-                message: '',
+                message: 'DB con test',
                 error: ''         // No error
             });
         }
