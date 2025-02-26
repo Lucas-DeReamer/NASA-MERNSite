@@ -1,29 +1,30 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const app = express();
-app.use(cors());
+const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
 app.use(bodyParser.json());
 app.use(express.json());
 
+const cors = require('cors');
 const corsOptions = {
     origin: "http://3.133.227.144/" // frontend URI (ReactJS)
 }
 app.use(cors(corsOptions));
 
 
+// Database ----------------------------------------------------
 
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URL; // protected database url
 
-const client = new MongoClient(url);
+const client = new mongoose(url);
 
 //Test connection
 client.connect()
     .then(() => {
-        console.log('Successfully connected to MongoDB');
+        console.log('Successfully connected to MongoDB with Mongoose');
         app.listen(5000, () => {
             console.log("Server running at http://localhost:5000");
         });
@@ -31,6 +32,17 @@ client.connect()
     .catch((err) => {
         console.error('Error connecting to MongoDB:', err);
     });
+
+const PKRSchema = new mongoose.Schema({
+    PK: { type: String, required: true },
+    name: String,
+    sid: { type: Number, required: true }   //Submit ID
+});
+const PKRec = mongoose.model('PKRec', PKRSchema);
+
+
+
+
 
 
 
@@ -51,18 +63,11 @@ app.use((req, res, next) =>
 
 
 
-//app.listen(5000); // start Node + Express server on port 5000
-
-// route
+// Routes --------------------------------
 app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
-app.get("/submit", async (req, res, next) => {
-
-    console.log("Get submit");
-    res.status(200).json({message: "Get Submit syn correct"})
-})
 
 
 app.post("/submit", async (req, res, next) => {
@@ -71,18 +76,16 @@ app.post("/submit", async (req, res, next) => {
 
     const { PK, name } = req.body;
 
-    var error = "";
-
-    const js = { message: name, error: error };
-
     //console.log("Sub API activated")
     //res.status(200).json(js);
 
 
     try {
-        const db = client.db();
-        const keyMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
+        //const db = client.db();
+        //const keyMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
         //console.log(keyMatched);
+        const keyMatched = await PKRec.find({ PK: PK });
+        console.log(keyMatched);
         if (keyMatched.length > 0) {
 
             // Return JSON Error: PK already in DB
@@ -91,11 +94,11 @@ app.post("/submit", async (req, res, next) => {
                 error: 'PK already exists'
             });
         } else {
-            const newEntry = { PK: PK, name: name};
+            //const newEntry = { PK: PK, name: name};
 
-            const results = await db.collection('Public_Keys').insertOne(newEntry);
-            const id = newEntry.insertedID;
-            console.log(newEntry);
+            //const results = await db.collection('Public_Keys').insertOne(newEntry);
+            //const id = newEntry.insertedID;
+            //console.log(newEntry);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
