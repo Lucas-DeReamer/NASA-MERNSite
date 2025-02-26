@@ -81,26 +81,24 @@ app.post("/submit", async (req, res, next) => {
 
     try {
         const db = client.db();
-        console.log("Conected to DB?");
-        const loginMatched = await db.collection('Public_Keys').find({}).toArray();
+        const loginMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
         console.log(loginMatched);
         if (loginMatched.length > 0) {
 
             // Return JSON Error: PK already in DB
             res.status(418).json({
-                message: id,
-                error: 'This Public Key has already been added.'
+                message: 'This Public Key has already been added.',
+                error: 'PK already exists'
             });
         } else {
             const newEntry = { PK: PK, name: name};
 
-            //const db = client.db();
-              //const results = await db.collection('Users').insertOne(newEntry);
-            //const id = results.insertedId;
+            const results = await db.collection('Public_Keys').insertOne(newEntry);
+            const id = results._id;
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
-                message: 'DB con test',
+                message: id,
                 error: ''         // No error
             });
         }
