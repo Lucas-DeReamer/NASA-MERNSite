@@ -84,7 +84,7 @@ app.post("/submit", async (req, res, next) => {
         //const db = client.db();
         //const keyMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
         //console.log(keyMatched);
-        const keyMatched = await PKRec.findMany({ PK: PK });
+        const keyMatched = await PKRec.find({ PK: PK });
         console.log(keyMatched);
         if (keyMatched.length > 0) {
 
