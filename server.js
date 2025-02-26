@@ -19,10 +19,10 @@ const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URL; // protected database url
 
-const client = new mongoose(url);
+//const client = new MongoClient(url);
 
 //Test connection
-client.connect()
+mongoose.connect(url)
     .then(() => {
         console.log('Successfully connected to MongoDB with Mongoose');
         app.listen(5000, () => {
