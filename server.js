@@ -93,9 +93,9 @@ app.post("/submit", async (req, res, next) => {
         } else {
             const newEntry = { PK: PK, name: name};
 
-            const results = await db.collection('Public_Keys').insertOne(newEntry);
+            const results = await db.collection('Public_Keys').insertOne(newEntry).toArray();
             const id = results.insertedID;
-            console.log(id)
+            console.log(results);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
