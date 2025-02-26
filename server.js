@@ -82,7 +82,7 @@ app.post("/submit", async (req, res, next) => {
     try {
         const db = client.db();
         console.log("Conected to DB?");
-        const loginMatched = await db.collection('Public_Keys').find({ PK: PK }).toArray();
+        const loginMatched = await db.collection('Public_Keys').find({}).toArray();
         console.log(loginMatched);
         if (loginMatched.length > 0) {
 
