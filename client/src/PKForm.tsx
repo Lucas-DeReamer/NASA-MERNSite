@@ -26,7 +26,7 @@ function PKForm() {
 
         try {
             const response = await
-                fetch('http://localhost:5000/api/submit',
+                fetch('http://3.133.227.144/api/submit',
                     {
                         method: 'POST', body: js, headers: {
                             'Content-Type':

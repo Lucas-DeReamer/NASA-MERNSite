@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 const corsOptions = {
-    origin: "http://localhost:3000" // frontend URI (ReactJS)
+    origin: "http://3.133.227.144/" // frontend URI (ReactJS)
 }
 app.use(cors(corsOptions));
 
@@ -68,6 +68,8 @@ app.post("/api/submit/", async (req, res, next) => {
     var error = "";
 
     const js = { message: name, error: error };
+
+    console.log("Sub API activated")
 
     res.status(200).json(js);
 
