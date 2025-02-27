@@ -128,7 +128,7 @@ app.post("/submit", async (req, res, next) => {
 
 function cleanupAndExit() {
     server.close(() => {
-        console.log('dadjokes server closed');
+        console.log('Server closed');
         process.exit(0);
     });
 }

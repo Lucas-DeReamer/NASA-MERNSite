@@ -40,8 +40,6 @@ function App() {
     <PKForm></PKForm></div>
 } 
 
-/*function App() {
-    return <div><Message></Message></div>
-}*/
+
 
 export default App;
