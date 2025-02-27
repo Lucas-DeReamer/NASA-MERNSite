@@ -98,9 +98,7 @@ app.post("/submit", async (req, res, next) => {
 
             const results = await PKRec.insertOne(newEntry);
             const id = newEntry.insertedID;
-            console.log(results);
-            console.log(" - ");
-            console.log(newEntry);
+            console.log(results._id);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
