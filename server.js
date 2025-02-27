@@ -85,7 +85,7 @@ app.post("/submit", async (req, res, next) => {
         //const keyMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
         //console.log(keyMatched);
         const keyMatched = await PKRec.find({ PK: PK });
-        console.log(keyMatched);
+        
         if (keyMatched.length > 0) {
 
             // Return JSON Error: PK already in DB
@@ -99,7 +99,8 @@ app.post("/submit", async (req, res, next) => {
             const results = await PKRec.insertOne(newEntry);
             const id = newEntry.insertedID;
             console.log(results);
-            console.log(id);
+            console.log(" - ");
+            console.log(newEntry);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
@@ -114,7 +115,6 @@ app.post("/submit", async (req, res, next) => {
         res.status(500).json({ message: "error", error: error }); // Send an error respons
 
     }
-
 
 });
 
