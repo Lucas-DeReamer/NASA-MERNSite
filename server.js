@@ -94,11 +94,12 @@ app.post("/submit", async (req, res, next) => {
                 error: 'PK already exists'
             });
         } else {
-            //const newEntry = { PK: PK, name: name};
+            const newEntry = { PK: PK, name: name, sid: 0};
 
-            //const results = await db.collection('Public_Keys').insertOne(newEntry);
-            //const id = newEntry.insertedID;
-            //console.log(newEntry);
+            const results = await PKRec.insertOne(newEntry);
+            const id = newEntry.insertedID;
+            console.log(results);
+            console.log(id);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
@@ -116,3 +117,20 @@ app.post("/submit", async (req, res, next) => {
 
 
 });
+
+
+
+
+
+
+
+
+
+function cleanupAndExit() {
+    server.close(() => {
+        console.log('dadjokes server closed');
+        process.exit(0);
+    });
+}
+process.on('SIGTERM', cleanupAndExit);
+process.on('SIGINT', cleanupAndExit);
