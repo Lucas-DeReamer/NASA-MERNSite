@@ -27,6 +27,8 @@ mongoose.connect(url)
         console.log('Successfully connected to MongoDB with Mongoose');
         app.listen(5000, () => {
             console.log("Server running at http://localhost:5000");
+            // send ready signal to pm2 after db connect
+            process.send('ready');
         });
     })
     .catch((err) => {
