@@ -96,13 +96,62 @@ app.post("/submit", async (req, res, next) => {
                 error: 'PK already exists'
             });
         } else {
-            const newEntry = { PK: PK, name: name, sid: 0};
+            //calc next sid
+            const currrentH = await PKRec.find().sort(sid: -1).limit(1);
+            const curSid = currentH.sid;
+
+
+            const newEntry = { PK: PK, name: name, sid: (curSid + 1)};
 
             const results = await PKRec.insertOne(newEntry);
             const id = newEntry.insertedID;
             console.log(results._id);
 
             // Return a single JSON response ------User VPN Inst
+            res.status(200).json({
+                message: 'In good',
+                error: ''         // No error
+            });
+        }
+
+    } catch (e) {
+        // Handle any errors that occur during the database operation
+        const error = e.toString();
+        res.status(500).json({ message: "error", error: error }); // Send an error respons
+
+    }
+
+});
+
+
+app.post("/delete", async (req, res, next) => {
+    // incoming: Autherization token, search
+    // outgoing: error
+
+    const { Auth, search } = req.body;
+
+    //console.log("Sub API activated");
+    //res.status(200).json(js);
+
+
+    try {
+        //const authT = process.env.AUTHTOKEN;
+
+        if (Auth != process.env.AUTHTOKEN) {
+
+            // Return JSON Error: PK already in DB
+            res.status(418).json({
+                message: 'You do not have permission to do this.',
+                error: 'No Access'
+            });
+        } else {
+            const newEntry = { PK: PK, name: name, sid: 0 };
+
+            const results = await PKRec.insertOne(newEntry);
+            const id = newEntry.insertedID;
+            console.log(results._id);
+
+            // Return a single JSON response ------User Del
             res.status(200).json({
                 message: 'In good',
                 error: ''         // No error

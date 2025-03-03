@@ -1,3 +1,26 @@
+import React from "react";
+
+
+
+import Message from './Message';
+import PKForm from './PKForm';
+
+
+function App() {
+    return <div><Message></Message>
+        <PKForm></PKForm></div>
+}
+
+
+
+export default App;
+
+
+
+
+
+
+
 //import { useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
@@ -32,14 +55,3 @@
   )
 }     */
 
-import Message from './Message';
-import PKForm from './PKForm';
-
-function App() {
-    return <div><Message></Message>
-    <PKForm></PKForm></div>
-} 
-
-
-
-export default App;
