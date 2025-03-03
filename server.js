@@ -97,7 +97,7 @@ app.post("/submit", async (req, res, next) => {
             });
         } else {
             //calc next sid
-            const currrentH = await PKRec.find().sort(sid: -1).limit(1);
+            const currrentH = await PKRec.find().sort({ sid: -1 }).limit(1);
             const curSid = currentH.sid;
 
 
