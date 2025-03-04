@@ -102,7 +102,9 @@ app.post("/submit", async (req, res, next) => {
             //sidquery.sort({ sid: -1 });
             //sidquery.limit(1);
             //const currentH = sidquery.exec();
-            const currrentH = await PKRec.find({}).sort({ sid: -1 }).limit(1).exec(function (err, model) { });
+            await PKRec.find({}).sort({ sid: -1 }).limit(1).exec(function (err, model) {
+                const currentH = model;
+            });
             console.log(currentH);
             //const curSid = currentH.sid;
             console.log("got past cursid assign");
