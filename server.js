@@ -98,26 +98,13 @@ app.post("/submit", async (req, res, next) => {
             });
         } else {
             //calc next sid
-            //const sidquery = PKRec.find();
-            //sidquery.sort({ sid: -1 });
-            //sidquery.limit(1);
-            //const currentH = sidquery.exec(); .sort({sid: -1}).limit(1)
-            //await PKRec.find({}).exec(function (err, model) {
-            //    console.log(model);
-            //});
             const currentH = await PKRec.find({}).sort({sid: -1}).limit(1);
-            console.log(currentH[0]);
             const curSid = currentH[0].sid;
-            //console.log("got past cursid assign");
-
-            console.log(curSid);
-
 
             const newEntry = { PK: PK, name: name, sid: (curSid + 1) };
-            console.log(newEntry);
 
-           // const results = await PKRec.insertOne(newEntry);
-            const id = newEntry.insertedID;
+            const results = await PKRec.insertOne(newEntry);
+            //const id = newEntry.insertedID;
             console.log(results._id);
 
             // Return a single JSON response ------User VPN Inst
@@ -137,14 +124,13 @@ app.post("/submit", async (req, res, next) => {
 });
 
 
-app.post("/delete", async (req, res, next) => {
-    // incoming: Autherization token, search
-    // outgoing: error
+app.get("/getkeys", async (req, res, next) => {
+    // incoming: Autherization token
+    // outgoing: All keys/names/sids
 
-    const { Auth, search } = req.body;
+    const { Auth } = req.body;
 
-    //console.log("Sub API activated");
-    //res.status(200).json(js);
+    res.status(200).json(req.body);
 
 
     try {
