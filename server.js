@@ -101,8 +101,8 @@ app.post("/submit", async (req, res, next) => {
             //const sidquery = PKRec.find();
             //sidquery.sort({ sid: -1 });
             //sidquery.limit(1);
-            //const currentH = sidquery.exec();
-            await PKRec.find({}).sort({ sid: -1 }).limit(1).exec(function (err, model) {
+            //const currentH = sidquery.exec(); .sort({sid: -1}).limit(1)
+            await PKRec.find({}).exec(function (err, model) {
                 console.log(model);
             });
             //console.log(currentH);
