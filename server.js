@@ -97,8 +97,8 @@ app.post("/submit", async (req, res, next) => {
             });
         } else {
             //calc next sid
-            const currrentH = await PKRec.find({}, 'sid').sort({ sid: -1 }).limit(1);
-            console.log(currentH.length);
+            const currrentH = await PKRec.find({}).sort({ sid: -1 }); //.limit(1);
+            console.log(currentH);
             //const curSid = currentH.sid;
             console.log("got past cursid assign");
 
