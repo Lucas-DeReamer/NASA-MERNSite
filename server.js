@@ -105,7 +105,7 @@ app.post("/submit", async (req, res, next) => {
             //await PKRec.find({}).exec(function (err, model) {
             //    console.log(model);
             //});
-            const currentH = await PKRec.find({}).sort({sid: -1});
+            const currentH = await PKRec.find({}).sort({sid: -1}).limit(1);
             console.log(currentH);
             //const curSid = currentH.sid;
             console.log("got past cursid assign");
@@ -129,7 +129,7 @@ app.post("/submit", async (req, res, next) => {
     } catch (e) {
         // Handle any errors that occur during the database operation
         const error = e.toString();
-        res.status(500).json({ message: "error", error: error }); // Send an error respons
+        res.status(500).json({ message: error, error: "error" }); // Send an error respons
 
     }
 
