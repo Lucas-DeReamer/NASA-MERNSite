@@ -105,7 +105,7 @@ app.post("/submit", async (req, res, next) => {
             //await PKRec.find({}).exec(function (err, model) {
             //    console.log(model);
             //});
-            const currentH = await PKRec.find({});
+            const currentH = await PKRec.find({}).sort({sid: -1});
             console.log(currentH);
             //const curSid = currentH.sid;
             console.log("got past cursid assign");
