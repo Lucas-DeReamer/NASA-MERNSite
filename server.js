@@ -98,11 +98,11 @@ app.post("/submit", async (req, res, next) => {
         } else {
             //calc next sid
             const currrentH = await PKRec.find({}, 'sid').sort({ sid: -1 }).limit(1);
-            console.log(currentH.type);
-            const curSid = currentH.sid;
+            console.log(currentH.length);
+            //const curSid = currentH.sid;
             console.log("got past cursid assign");
 
-            console.log(curSid);
+            //console.log(curSid);
 
 
             const newEntry = { PK: PK, name: name, sid: (curSid + 1)};
