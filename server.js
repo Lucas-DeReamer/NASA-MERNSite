@@ -97,10 +97,10 @@ app.post("/submit", async (req, res, next) => {
             });
         } else {
             //calc next sid
-            const currrentH = await PKRec.find({}).sort({ sid: -1 }).limit(1);
-            console.log("got past f q");
-            console.log(currentH);
+            const currrentH = await PKRec.find({}, 'sid').sort({ sid: -1 }).limit(1);
+            console.log(currentH.type);
             const curSid = currentH.sid;
+            console.log("got past cursid assign");
 
             console.log(curSid);
 
