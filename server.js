@@ -107,15 +107,16 @@ app.post("/submit", async (req, res, next) => {
             //});
             const currentH = await PKRec.find({}).sort({sid: -1}).limit(1);
             console.log(currentH[0]);
-            //const curSid = currentH.sid;
-            console.log("got past cursid assign");
+            const curSid = currentH[0].sid;
+            //console.log("got past cursid assign");
 
-            //console.log(curSid);
+            console.log(curSid);
 
 
-            const newEntry = { PK: PK, name: name, sid: (curSid + 1)};
+            const newEntry = { PK: PK, name: name, sid: (curSid + 1) };
+            console.log(newEntry);
 
-            const results = await PKRec.insertOne(newEntry);
+           // const results = await PKRec.insertOne(newEntry);
             const id = newEntry.insertedID;
             console.log(results._id);
 
