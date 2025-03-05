@@ -79,7 +79,7 @@ app.post("/submit", async (req, res, next) => {
     const { PK, name } = req.body;
 
     //console.log("Sub API activated")
-    res.status(200).send(PK.length);
+    res.status(200).json({ message: PK.length });
 
 
     try {
