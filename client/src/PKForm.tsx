@@ -50,7 +50,7 @@ function PKForm() {
                 const add2 = Math.floor(res.message / 255);
                 const address = ("10.0." + add2 + "." + add1 + "/32");
 
-                const WGtext = ("Address = " + address + "\n"
+                const WGtext = ("Address = " + address + "<br>"
                             + "DNS = 1.1.1.1\n\n"
                             + "[PEER]\n"
                             + "PublicKey = 1CIc2tMX3ULSXSSOm92KfPd31rL51sQvicCVp6mITyY=\n"
