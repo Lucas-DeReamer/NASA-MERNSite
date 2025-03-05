@@ -130,8 +130,7 @@ app.get("/getkeys", async (req, res, next) => {
 
     const { Auth } = req.body;
 
-    res.status(200).json(Auth);
-
+    //res.status(200).json(Auth);
 
     try {
         //const authT = process.env.AUTHTOKEN;
@@ -139,20 +138,15 @@ app.get("/getkeys", async (req, res, next) => {
         if (Auth != process.env.AUTHTOKEN) {
 
             // Return JSON Error: PK already in DB
-            res.status(418).json({
+            res.status(401).json({
                 message: 'You do not have permission to do this.',
                 error: 'No Access'
             });
         } else {
-            const newEntry = { PK: PK, name: name, sid: 0 };
-
-            const results = await PKRec.insertOne(newEntry);
-            const id = newEntry.insertedID;
-            console.log(results._id);
 
             // Return a single JSON response ------User Del
             res.status(200).json({
-                message: 'In good',
+                message: 'Correct Auth',
                 error: ''         // No error
             });
         }
