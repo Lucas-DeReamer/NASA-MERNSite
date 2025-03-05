@@ -140,15 +140,13 @@ app.get("/getkeys", async (req, res, next) => {
             // Return JSON Error: PK already in DB
             res.status(401).json({
                 message: 'You do not have permission to do this.',
-                error: 'No Access'
             });
         } else {
 
+            const allKeys = await PKRec.find({}, 'PK sid');
+
             // Return a single JSON response ------User Del
-            res.status(200).json({
-                message: 'Correct Auth',
-                error: ''         // No error
-            });
+            res.status(200).json(allKeys);
         }
 
     } catch (e) {
