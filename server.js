@@ -78,21 +78,17 @@ app.post("/submit", async (req, res, next) => {
 
     const { PK, name } = req.body;
 
-    //console.log("Sub API activated")
-    res.status(200).json({ message: PK.length });
-
+    if (PK.length != 44 || PK[PK.length - 1] != '=') {
+        res.status(418).json({ message: 'This is not a valid WireGuard public key.' });
+    }
 
     try {
-        //const db = client.db();
-        //const keyMatched = await db.collection('Public_Keys').find({PK: PK}).toArray();
-        //console.log(keyMatched);
         const keyMatched = await PKRec.find({ PK: PK });
-        console.log(keyMatched);
+        //console.log(keyMatched);
         
         if (keyMatched.length > 0) {
-
             // Return JSON Error: PK already in DB
-            res.status(418).json({
+            res.status(400).json({
                 message: 'This Public Key has already been added.',
                 error: 'PK already exists'
             });
