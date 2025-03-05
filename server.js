@@ -80,6 +80,7 @@ app.post("/submit", async (req, res, next) => {
 
     if (PK.length != 44 || PK[PK.length - 1] != '=') {
         res.status(418).json({ message: 'This is not a valid WireGuard public key.' });
+        return;
     }
 
     try {
