@@ -143,7 +143,7 @@ app.get("/getkeys", async (req, res, next) => {
             });
         } else {
 
-            const allKeys = await PKRec.find({}, { projection: { _id: 0 } }, 'PK sid').toArray();
+            const allKeys = await PKRec.find({}, { projection: { _id: 0 , name: 0} }).toArray();
 
             // Return a single JSON response ------User Del
             res.status(200).json(allKeys);
