@@ -146,7 +146,7 @@ app.get("/getkeys", async (req, res, next) => {
             const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0});
 
             // Return a single JSON response ------User Del
-            res.status(200).json(allKeys);
+            res.status(200).send(allKeys);
         }
 
     } catch (e) {
