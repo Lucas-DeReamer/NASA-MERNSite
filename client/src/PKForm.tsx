@@ -36,7 +36,33 @@ function PKForm() {
                     });
             let txt = await response.text();
             let res = JSON.parse(txt);
-            setRes(res.message);
+
+
+            if (res.error == 1 || res.error == 2) {
+                setRes(res.message);
+
+            } else if (res.error == 3) {
+                setRes('Server Error. Please try again later.');
+
+            } else {
+
+                const add1 = res.message % 255;
+                const add2 = Math.floor(res.message / 255);
+                const address = ("10.0." + add2 + "." + add1 + "/32");
+
+                const WGtext = ("Address = " + address + "\n"
+                            + "DNS = 1.1.1.1\n\n"
+                            + "[PEER]\n"
+                            + "PublicKey = 1CIc2tMX3ULSXSSOm92KfPd31rL51sQvicCVp6mITyY=\n"
+                            + "AllowedIPs = 0.0.0.0/0\n"
+                            + "Endpoint = 18.221.62.217:51820");
+
+                setRes(WGtext);
+
+
+            }
+
+
         }
         catch (error: any) {
             setRes(error.toString());
@@ -50,7 +76,7 @@ function PKForm() {
 
         //setRes(inputs.PK + " " + inputs.name);
 
-    }
+    } //end func submit
 
     return (
         <form onSubmit={submit}>

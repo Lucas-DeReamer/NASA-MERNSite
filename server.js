@@ -79,7 +79,10 @@ app.post("/submit", async (req, res, next) => {
     const { PK, name } = req.body;
 
     if (PK.length != 44 || PK[PK.length - 1] != '=') {
-        res.status(418).json({ message: 'This is not a valid WireGuard public key.' });
+        res.status(418).json({
+            message: 'This is not a valid WireGuard public key.',
+            error: 1
+        });
         return;
     }
 
@@ -91,30 +94,30 @@ app.post("/submit", async (req, res, next) => {
             // Return JSON Error: PK already in DB
             res.status(400).json({
                 message: 'This Public Key has already been added.',
-                error: 'PK already exists'
+                error: 2
             });
         } else {
             //calc next sid
             const currentH = await PKRec.find({}).sort({sid: -1}).limit(1);
             const curSid = currentH[0].sid;
+            const sid = curSid + 1;
 
-            const newEntry = { PK: PK, name: name, sid: (curSid + 1) };
+            const newEntry = { PK: PK, name: name, sid: sid };
 
             const results = await PKRec.insertOne(newEntry);
-            const sid = newEntry.sid;
-            console.log(results.sid);
+            //console.log(results.sid);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
-                message: 'Your Sid: ' + sid,
-                error: ''         // No error
+                message: sid,
+                error: 0         // No error
             });
         }
 
     } catch (e) {
         // Handle any errors that occur during the database operation
         const error = e.toString();
-        res.status(500).json({ message: error, error: "error" }); // Send an error respons
+        res.status(500).json({ message: error, error: 3 }); // Send an error respons
 
     }
 
