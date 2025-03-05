@@ -104,12 +104,12 @@ app.post("/submit", async (req, res, next) => {
             const newEntry = { PK: PK, name: name, sid: (curSid + 1) };
 
             const results = await PKRec.insertOne(newEntry);
-            //const id = newEntry.insertedID;
-            console.log(results._id);
+            const sid = newEntry.sid;
+            console.log(results.sid);
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
-                message: 'In good',
+                message: 'Your Sid: ' + sid,
                 error: ''         // No error
             });
         }
@@ -130,11 +130,7 @@ app.get("/getkeys", async (req, res, next) => {
 
     const { Auth } = req.body;
 
-    //res.status(200).json(Auth);
-
     try {
-        //const authT = process.env.AUTHTOKEN;
-
         if (Auth != process.env.AUTHTOKEN) {
 
             // Return JSON Error: PK already in DB
@@ -145,14 +141,14 @@ app.get("/getkeys", async (req, res, next) => {
 
             const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0});
 
-            // Return a single JSON response ------User Del
-            res.status(200).send(allKeys);
+            // Return a single response
+            res.status(200).send(allKeys);   //.json({allKeys: allKeys}) may be needed
         }
 
     } catch (e) {
         // Handle any errors that occur during the database operation
         const error = e.toString();
-        res.status(500).json({ message: "error", error: error }); // Send an error respons
+        res.status(500).json({ message: "error", error: error }); // Send an error response
 
     }
 
