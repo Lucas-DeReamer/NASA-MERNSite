@@ -57,7 +57,7 @@ function PKForm() {
                             + "AllowedIPs = 0.0.0.0/0\n"
                             + "Endpoint = 18.221.62.217:51820");
 
-                this.WGtext.replace("\n", "<br>");
+                WGtext.replace("\n", "<br>");
 
 
 
