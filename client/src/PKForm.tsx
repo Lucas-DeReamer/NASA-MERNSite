@@ -90,11 +90,11 @@ function PKForm() {
                     type="text"
                     name="PK"
                     value={inputs.PK || ""}
-                    placeholder="Public Key"
+                    placeholder="(WireGuard Format)"
                     onChange={handleChange}
                 />
             </label>
-            <label>&nbsp;Name:&nbsp;
+            <label>&nbsp;Team Name:&nbsp;
                 <input
                     id="PKF"
                     type="text"
