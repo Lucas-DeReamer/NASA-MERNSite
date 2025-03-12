@@ -39,7 +39,7 @@ function PKForm() {
             let res = JSON.parse(txt);
 
 
-            if (res.error == 0 || res.error == 2) {  //set error back to 1
+            if ((res.error == 1 || res.error == 2) && inputs.PK != "test") {
                 setRes(res.message);
 
             } else if (res.error == 3) {
@@ -51,7 +51,7 @@ function PKForm() {
                 const add2 = Math.floor(res.message / 255);
                 const address = ("10.0." + add2 + "." + add1 + "/32");
 
-                const WGtext: string = ("Copy following text:\n\n"
+                const WGtext: string = ("Copy and paste the following text into your WireGuard tunnel configuration:\n\n"
                             + "Address = " + address + "\n"
                             + "DNS = 1.1.1.1\n\n"
                             + "[PEER]\n"
