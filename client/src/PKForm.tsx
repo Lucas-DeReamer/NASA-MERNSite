@@ -51,15 +51,13 @@ function PKForm() {
                 const add2 = Math.floor(res.message / 255);
                 const address = ("10.0." + add2 + "." + add1 + "/32");
 
-                const WGtext: string = ("Address = " + address + "\n"
+                const WGtext: string = ("Copy following text:\n\n"
+                            + "Address = " + address + "\n"
                             + "DNS = 1.1.1.1\n\n"
                             + "[PEER]\n"
                             + "PublicKey = 1CIc2tMX3ULSXSSOm92KfPd31rL51sQvicCVp6mITyY=\n"
                             + "AllowedIPs = 0.0.0.0/0\n"
                             + "Endpoint = 18.221.62.217:51820");
-
-                //WGtext.replace("\n", "<br>");
-
 
 
 
