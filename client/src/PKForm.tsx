@@ -38,7 +38,7 @@ function PKForm() {
             let res = JSON.parse(txt);
 
 
-            if (res.error == 1 || res.error == 2) {
+            if (res.error == 0 || res.error == 2) {  //set error back to 1
                 setRes(res.message);
 
             } else if (res.error == 3) {
@@ -50,12 +50,17 @@ function PKForm() {
                 const add2 = Math.floor(res.message / 255);
                 const address = ("10.0." + add2 + "." + add1 + "/32");
 
-                const WGtext = ("Address = " + address + "<br>"
+                const WGtext: string = ("Address = " + address + "\n"
                             + "DNS = 1.1.1.1\n\n"
                             + "[PEER]\n"
                             + "PublicKey = 1CIc2tMX3ULSXSSOm92KfPd31rL51sQvicCVp6mITyY=\n"
                             + "AllowedIPs = 0.0.0.0/0\n"
                             + "Endpoint = 18.221.62.217:51820");
+
+                this.WGtext.replace("\n", "<br>");
+
+
+
 
                 setRes(WGtext);
 
@@ -101,10 +106,11 @@ function PKForm() {
                 />
             </label>
             <input type="submit" />
-            <>  {Res }</>
+            < >${Res }</>
             
         </form>
     )
+    //<>  {Res }</>
 
     //<button label="Submit" onclick={submit} >Submit</button>
     //nChange={(e) => setName(e.target.value)}
