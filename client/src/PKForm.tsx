@@ -106,7 +106,7 @@ function PKForm() {
                 />
             </label>
             <input type="submit" />
-            < >${Res }</>
+            < [innerHTML]="Res"></>
             
         </form>
     )
