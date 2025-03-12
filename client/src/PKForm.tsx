@@ -1,5 +1,6 @@
 import { useState } from 'react';
 //import ReactDOM from 'react-dom/client';
+import './PKForm.css';
 
 interface InputState {
     PK: string;
@@ -57,7 +58,7 @@ function PKForm() {
                             + "AllowedIPs = 0.0.0.0/0\n"
                             + "Endpoint = 18.221.62.217:51820");
 
-                WGtext.replace("\n", "<br>");
+                //WGtext.replace("\n", "<br>");
 
 
 
@@ -106,11 +107,13 @@ function PKForm() {
                 />
             </label>
             <input type="submit" />
-            < [innerHTML]="Res"></>
+            <p id="result" >{ Res}</p>
             
         </form>
     )
     //<>  {Res }</>
+
+    //<link rel="stylesheet" href="./PKForm.css">
 
     //<button label="Submit" onclick={submit} >Submit</button>
     //nChange={(e) => setName(e.target.value)}
