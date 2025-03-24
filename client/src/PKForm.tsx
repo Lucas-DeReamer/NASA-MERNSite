@@ -91,7 +91,7 @@ function PKForm() {
             <label>Public Key: &nbsp;
                 <input
                     id="PKF"
-                    size="45"
+                    size={45}
                     type="text"
                     name="PK"
                     value={inputs.PK || ""}
