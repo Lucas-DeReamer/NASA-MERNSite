@@ -62,7 +62,7 @@ function PKForm() {
 
 
                 if (res.error == 2) {
-                    setRes(res.message + "\n\n" + WGtext);
+                    setRes("This public key has already been recorded\n\n" + WGtext);
                 }
                 else { 
                     setRes(WGtext);

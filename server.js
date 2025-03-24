@@ -91,9 +91,10 @@ app.post("/submit", async (req, res, next) => {
         //console.log(keyMatched);
         
         if (keyMatched.length > 0) {
+            const matSid = keyMatched[0].sid;
             // Return JSON Error: PK already in DB
             res.status(400).json({
-                message: 'This Public Key has already been added.',
+                message: matSid,
                 error: 2
             });
         } else {
