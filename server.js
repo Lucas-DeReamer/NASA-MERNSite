@@ -43,9 +43,9 @@ const PKRSchema = new mongoose.Schema({
 const PKRec = mongoose.model('PKRec', PKRSchema);
 
 const UpdateSchema = new mongoose.Schema({
-
+    change: { type: Number, required: true }
 });
-
+const Update = mongoose.model('Update', UpdateSchema);
 
 
 
@@ -74,6 +74,19 @@ app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
+app.get("/a", (req, res) => {
+
+    try {
+        const newE = { change: 0 };
+        const results = await Update.insertOne(newE);
+        res.status(200).json({ message: "Added" });
+
+    } catch (e) {
+        const error = e.toString();
+        res.status(500).json({ message: error, error: 3 });
+    }
+    res.status(200).json({ message: "IDK" });
+});
 
 
 app.post("/submit", async (req, res, next) => {
