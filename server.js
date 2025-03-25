@@ -74,11 +74,11 @@ app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
-app.get("/a", (req, res) => {
+app.get("/a", async (req, res) => {
 
     try {
         const newE = { change: 0 };
-        const results = await Update.insertOne(newE);
+        const result = await Update.insertOne(newE);
         res.status(200).json({ message: "Added" });
 
     } catch (e) {
