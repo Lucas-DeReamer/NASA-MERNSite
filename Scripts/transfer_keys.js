@@ -51,7 +51,7 @@ req.on('close', () => {   //Code to execute AFTER http returns
         flow();
         
     }
-    //console.log("req is over.");
+    console.log(keysData);
 });
 
 

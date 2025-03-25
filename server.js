@@ -74,20 +74,6 @@ app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
-app.get("/a", async (req, res) => {
-
-    try {
-        const newE = { change: 0 };
-        const result = await Update.insertOne(newE);
-        res.status(200).json({ message: "Added" });
-
-    } catch (e) {
-        const error = e.toString();
-        res.status(500).json({ message: error, error: 3 });
-    }
-    
-});
-
 
 app.post("/submit", async (req, res, next) => {
     // incoming: PK, name
@@ -157,10 +143,15 @@ app.get("/getkeys", async (req, res, next) => {
             });
         } else {
 
+            const updata = await Update.find({}, { _id: 0, __v: 0 });
+
+            res.status(200).json(updata);
+
+            /*
             const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0});
 
             // Return a single response
-            res.status(200).send(allKeys);   //.json({allKeys: allKeys}) may be needed
+            res.status(200).send(allKeys);   //.json({allKeys: allKeys}) may be needed      */
         }
 
     } catch (e) {
