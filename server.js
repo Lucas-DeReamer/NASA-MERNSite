@@ -85,7 +85,7 @@ app.get("/a", (req, res) => {
         const error = e.toString();
         res.status(500).json({ message: error, error: 3 });
     }
-    res.status(200).json({ message: "IDK" });
+    
 });
 
 
