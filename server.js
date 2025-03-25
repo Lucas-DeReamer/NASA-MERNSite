@@ -42,6 +42,10 @@ const PKRSchema = new mongoose.Schema({
 });
 const PKRec = mongoose.model('PKRec', PKRSchema);
 
+const UpdateSchema = new mongoose.Schema({
+
+});
+
 
 
 
