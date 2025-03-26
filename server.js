@@ -146,7 +146,7 @@ app.get("/getkeys", async (req, res, next) => {
         } else {
 
             const updata = await Update.find({}, { _id: 0, __v: 0 });
-            res.status(200).json({ mes: updata.change });
+            res.status(200).send(updata[0].change);
             /*if (updata.change == 0) {
 
                 res.status(400).json({});
