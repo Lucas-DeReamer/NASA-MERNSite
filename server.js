@@ -74,6 +74,17 @@ app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
+app.get("/f", async (req, res) => {
+    try {
+        const ff = await Update.updateOne({}, { change: 1 });
+
+        res.status(200).json({ message: "ff" });
+    } catch (e) {
+        const error = e.toString();
+        res.status(500).json({ message: error, error: 3 });
+    }
+    res.status(201).json({ message: "Connected to Backend!" });
+});
 
 app.post("/submit", async (req, res, next) => {
     // incoming: PK, name
@@ -144,14 +155,23 @@ app.get("/getkeys", async (req, res, next) => {
         } else {
 
             const updata = await Update.find({}, { _id: 0, __v: 0 });
+            if (updata.change == 0) {
 
-            res.status(200).json(updata);
+                res.status(400).json({});
 
-            /*
-            const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0});
+            } else {
 
-            // Return a single response
-            res.status(200).send(allKeys);   //.json({allKeys: allKeys}) may be needed      */
+                const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0 });
+
+                const ff = await Update.updateOne({}, { change: 0 });
+
+                // Return a single response
+                res.status(200).send(allKeys);   //.json({allKeys: allKeys}) may be needed
+
+            }
+            //res.status(200).json(updata);
+
+            
         }
 
     } catch (e) {
