@@ -74,18 +74,6 @@ app.get("/", (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
 });
 
-app.get("/f", async (req, res) => {
-    try {
-        const ff = await Update.updateOne({}, { change: 1 });
-
-        res.status(200).json({ message: "ff" });
-    } catch (e) {
-        const error = e.toString();
-        res.status(500).json({ message: error, error: 3 });
-    }
-    res.status(201).json({ message: "Connected to Backend!" });
-});
-
 app.post("/submit", async (req, res, next) => {
     // incoming: PK, name
     // outgoing: error
@@ -121,6 +109,9 @@ app.post("/submit", async (req, res, next) => {
 
             const results = await PKRec.insertOne(newEntry);
             //console.log(results.sid);
+
+            //Record change in records so migration updates
+            const ff = await Update.updateOne({}, { change: 1 });
 
             // Return a single JSON response ------User VPN Inst
             res.status(200).json({
@@ -171,7 +162,6 @@ app.get("/getkeys", async (req, res, next) => {
             }
             //res.status(200).json(updata);
 
-            
         }
 
     } catch (e) {
