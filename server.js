@@ -146,8 +146,8 @@ app.get("/getkeys", async (req, res, next) => {
         } else {
 
             const updata = await Update.find({}, { _id: 0, __v: 0 });
-            res.status(200).json({ mes: updata[0].change });
-            /*if (updata.change == 0) {
+            //res.status(200).json({ mes: updata[0].change });
+            if (updata[0].change == 0) {
 
                 res.status(400).json({});
 
@@ -160,7 +160,7 @@ app.get("/getkeys", async (req, res, next) => {
                 // Return a single response
                 res.status(200).send(allKeys);   //.json({allKeys: allKeys}) may be needed
 
-            }    */
+            }    
             //res.status(200).json(updata);
 
         }
