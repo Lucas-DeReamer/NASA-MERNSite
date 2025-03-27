@@ -112,7 +112,7 @@ app.post("/submit", async (req, res, next) => {
             const d_t = new Date().toISOString();
             const curYear = d_t.slice(0, 4);
             const curMonth = d_t.slice(5, 7);
-            const curDay = d_t.slice(9, 10);
+            const curDay = d_t.slice(8, 10);
 
             const newEntry = { PK: PK, name: name, sid: sid, year: curYear, month: curMonth, day: curDay };
 
