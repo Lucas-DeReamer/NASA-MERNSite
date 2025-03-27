@@ -38,7 +38,10 @@ mongoose.connect(url)
 const PKRSchema = new mongoose.Schema({
     PK: { type: String, required: true },
     name: String,
-    sid: { type: Number, required: true }   //Submit ID
+    sid: { type: Number, required: true },   //Submit ID
+    year: { type: String, required: true }, 
+    month: { type: String, required: true },
+    day: { type: String, required: true } 
 });
 const PKRec = mongoose.model('PKRec', PKRSchema);
 
@@ -105,7 +108,13 @@ app.post("/submit", async (req, res, next) => {
             const curSid = currentH[0].sid;
             const sid = curSid + 1;
 
-            const newEntry = { PK: PK, name: name, sid: sid };
+            //Add date
+            const d_t = new Date().toISOString();
+            const curYear = d_t.slice(0, 4);
+            const curMonth = d_t.slice(5, 7);
+            const curDay = d_t.slice(9, 10);
+
+            const newEntry = { PK: PK, name: name, sid: sid, year: curYear, month: curMonth, day: curDay };
 
             const results = await PKRec.insertOne(newEntry);
             //console.log(results.sid);
@@ -153,7 +162,7 @@ app.get("/getkeys", async (req, res, next) => {
 
             } else {
 
-                const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0 });
+                const allKeys = await PKRec.find({}, { _id: 0, name: 0, __v: 0, year: 0, month: 0, day: 0});
 
                 const ff = await Update.updateOne({}, { change: 0 });
 

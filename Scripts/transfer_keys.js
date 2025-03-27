@@ -81,8 +81,8 @@ async function initFiles() {
     
     //add new file to serve as conf
     const header = "[Interface]\nAddress = 10.0.0.1/24\nSaveConfig = true\n" +
-        "PostUp = iptables - A FORWARD - i % i - j ACCEPT; iptables - t nat - A POSTROUTING - o eth0 - j MASQUERADE\n" +
-        "PostDown = iptables - D FORWARD - i % i - j ACCEPT; iptables - t nat - D POSTROUTING - o eth0 - j MASQUERADE\n" +
+        "PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE\n" +
+        "PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE\n" +
         "ListenPort = 51820\nPrivateKey = OPCxrZyTPGhpDTrtpzedHxrA5LlOFIjPKDVvqkCc2n4=\n\n";
 
     fs.writeFile('wg0.conf', header, (err) => {
@@ -90,7 +90,15 @@ async function initFiles() {
             console.error(err);
         }
     });
+    /*
+    await sleep(100);
 
+    fs.chmod('/etc/wireguard/wg0.conf', 0o600, (err) => {
+        if (err) {
+            console.error(err);
+        }
+    });
+    */
 } //end initFiles
 
 async function fillFile() {
